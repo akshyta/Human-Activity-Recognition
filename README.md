@@ -19,3 +19,29 @@ Due to limitations of resources we took only 20 classes of the dataset for the t
 No. of labels = 20
 Size of Training Set - 1060
 Size of Validation set - 195
+
+## Preprocessing of data
+For extracting most relevant information from the video dataset, various preprocessing techniques were tried on the data.
+Height, width of each frame and maximum no. of frames captured from the video was varied. Took frame size as 84x84 and frame rate of 5 frames per sec for the final model.
+Pixel values for each frame of a  videos were normalized to standard normal zero  mean and unit variance. 
+A location was randomly selected and all the frames of a video were randomly cropped at that location. Since this location is different each time the video is read, the model is able to learn at what location the most relevant information is present.
+Randomly Flipping of frames of video horizontally and random rotation was done to add more variety to dataset.
+Background subtraction on frames of the video was also tried.
+
+## Approach - Exploring Features
+Baseline: Trained a 2D convolution network from scratch averaging the output for each frame for the final output.
+Final model: Trained a stacked 3D convolution network as a feature extractor combining the static features of frames and capturing the relationship between them using convolution across frame dimension.  The output of feature extractor fed into feature aggregators/classifiers - FC layer, SVM and KNN for prediction using the video embedding.
+The non- linear activation used is Relu, in between 3 convolutional filters applying convolution with dilation and padding followed by a fully connected layer.
+
+## Evaluation
+Cross-Entropy Loss  		
+Accuracy				 
+Precision
+Recall
+F1 score
+Top -5 Error
+
+## Design choice
+Used 2 2D convolutional layers with max pooling followed by batch-normalization in between them. The output of convolutional layers is combined using 3 fully connected layers. The non-linear activation used is P-Relu.
+Used 3 3D convolutional layers with different settings for stride, dilation and padding across the 3 dimensions.    
+We had trained all the models for 5 epochs with learning rate 0.001 and optimizer as Adam.  Frame rate was 5 frames per second and frame size was 84 * 84.
