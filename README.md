@@ -45,3 +45,12 @@ Top -5 Error
 Used 2 2D convolutional layers with max pooling followed by batch-normalization in between them. The output of convolutional layers is combined using 3 fully connected layers. The non-linear activation used is P-Relu.
 Used 3 3D convolutional layers with different settings for stride, dilation and padding across the 3 dimensions.    
 We had trained all the models for 5 epochs with learning rate 0.001 and optimizer as Adam.  Frame rate was 5 frames per second and frame size was 84 * 84.
+
+## References
+The “something something” video database for learning and evaluating visual common sense.
+Link: https://arxiv.org/pdf/1706.04261.pdf
+
+CVPR 2014 paper - Large-scale Video Classification with Convolutional Neural Networks
+Link:https://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Karpathy_Large-scale_Video_Classification_2014_CVPR_paper.pdf
+
+Dataset Acquisition: https://20bn.com/datasets/something-something/v2
