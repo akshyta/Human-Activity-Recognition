@@ -34,12 +34,12 @@ Final model: Trained a stacked 3D convolution network as a feature extractor com
 The non- linear activation used is Relu, in between 3 convolutional filters applying convolution with dilation and padding followed by a fully connected layer.
 
 ## Evaluation
-Cross-Entropy Loss  		
-Accuracy				 
-Precision
-Recall
-F1 score
-Top -5 Error
+1. Cross-Entropy Loss  		
+2. Accuracy				 
+3. Precision
+4. Recall
+5. F1 score
+6. Top -5 Error
 
 ## Design choice
 Used 2 2D convolutional layers with max pooling followed by batch-normalization in between them. The output of convolutional layers is combined using 3 fully connected layers. The non-linear activation used is P-Relu.
