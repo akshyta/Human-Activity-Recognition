@@ -32,7 +32,7 @@ import torch.optim as optim
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
-
+import cv2
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -84,10 +84,40 @@ count = 0
 for i in classes:
   class_label_update[i] = count
   count +=1
+"""# Background Subtraction"""
+
+fgbg = cv2.createBackgroundSubtractorMOG2()
+# cap = cv2.VideoCapture(train_path + "/0/2455.webm") # Example Video
+
+def SubtractBackGround(Frames):
+    '''
+        params:
+            Frames -- Videos as multiple frames of shape (m,height,width, channels), m = number of frames
+        return:
+            Subtracted -- Gray Scale Frames in the video with rmoved backgorund of shape (m,height,width)
+    '''
+    (m,height,width,channels) = Frames.shape
+
+    Subtracted = np.zeros((m,height,width))
+
+    for i in range(m):
+        Subtracted[i,:,:] = fgbg.apply(Frames[i,:,:])
+
+    return Subtracted
+
+def SubtractBackGround_Image(Frame):
+    '''
+        params:
+            Frames -- Videos as multiple frames of shape (m,height,width, channels), m = number of frames
+        return:
+            Subtracted -- Gray Scale Frames in the video with rmoved backgorund of shape (m,height,width)
+    '''
+    Subtracted = fgbg.apply(Frame)
+
+    return Subtracted
 
 # creating a dictionary with video id as key and label as value
 # @json_data --> json data that we have stored in train_annotation_data or validation_annotation_data
-
 def get_label(json_data):
   video_label = {} # video_id --> label
   for i in json_data:
